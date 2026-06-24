@@ -1,0 +1,57 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Global Safety Net: Default deny everything
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Helper functions
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    function isValidAppointment(data) {
+      return data.keys().hasAll(['clientName', 'clientEmail', 'clientPhone', 'date', 'time'])
+        && data.clientName is string && data.clientName.size() > 0 && data.clientName.size() <= 128
+        && data.clientEmail is string && data.clientEmail.size() > 0 && data.clientEmail.size() <= 128
+        && data.clientPhone is string && data.clientPhone.size() > 0 && data.clientPhone.size() <= 32
+        && data.date is string && data.date.size() == 10
+        && data.time is string && data.time.size() == 5;
+    }
+
+    function isValidConsultation(data) {
+      return data.keys().hasAll(['hairType', 'desiredStyle'])
+        && data.hairType is string && data.hairType.size() > 0 && data.hairType.size() <= 64
+        && data.desiredStyle is string && data.desiredStyle.size() > 0 && data.desiredStyle.size() <= 500;
+    }
+
+    // Appointments collection security:
+    // Frictionless booking allows any guest to create an appointment, and read/update their specific appointment if they know the document ID.
+    // List queries are strictly forbidden to prevent data harvesting.
+    match /appointments/{appointmentId} {
+      allow get: if isValidId(appointmentId);
+      allow create: if isValidId(appointmentId) && isValidAppointment(incoming());
+      allow update: if isValidId(appointmentId) && isValidAppointment(incoming()) 
+        && (existing().status == 'pending' || incoming().status == 'paid');
+      allow delete: if false; // Deletion is not allowed from client-side
+    }
+
+    // Consultations collection security:
+    // Allows anyone to create an AI consultation profile and read their own by ID.
+    match /consultations/{consultationId} {
+      allow get: if isValidId(consultationId);
+      allow create: if isValidId(consultationId) && isValidConsultation(incoming());
+      allow update, delete: if false;
+    }
+  }
+}

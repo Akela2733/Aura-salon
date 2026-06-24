@@ -1,0 +1,50 @@
+{
+  "entities": {
+    "appointment": {
+      "title": "Appointment",
+      "description": "A salon appointment booking at CORRIDOR",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique booking identifier" },
+        "clientName": { "type": "string", "description": "Full name of the client" },
+        "clientEmail": { "type": "string", "format": "email", "description": "Email address" },
+        "clientPhone": { "type": "string", "description": "Contact number" },
+        "date": { "type": "string", "description": "Appointment date (YYYY-MM-DD)" },
+        "time": { "type": "string", "description": "Appointment time (HH:MM)" },
+        "selectedStation": { "type": "integer", "description": "The target station number (0-5)" },
+        "selectedServices": { "type": "array", "description": "List of selected salon services" },
+        "notes": { "type": "string", "description": "Optional custom requests" },
+        "totalAmount": { "type": "number", "description": "Total cost of the booking in LKR" },
+        "status": { "type": "string", "enum": ["pending", "confirmed", "paid", "cancelled"], "description": "Current status" },
+        "styleProfile": { "type": "object", "description": "AI consultation hair profile and instructions" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Time of booking creation" }
+      },
+      "required": ["clientName", "clientEmail", "clientPhone", "date", "time"]
+    },
+    "consultation": {
+      "title": "Consultation",
+      "description": "AI hair consultation history",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique consultation identifier" },
+        "clientName": { "type": "string", "description": "Client's name" },
+        "hairType": { "type": "string", "description": "Type of hair (straight, wavy, curly, coily)" },
+        "hairConcerns": { "type": "array", "description": "Client hair issues or goals" },
+        "desiredStyle": { "type": "string", "description": "Desired hairstyle description" },
+        "aiRecommendation": { "type": "string", "description": "The detailed recommendation from Gemini Stylist" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["hairType", "desiredStyle"]
+    }
+  },
+  "firestore": {
+    "appointments/{appointmentId}": {
+      "schema": "appointment",
+      "description": "Store individual client salon bookings"
+    },
+    "consultations/{consultationId}": {
+      "schema": "consultation",
+      "description": "Store history of style consultations"
+    }
+  }
+}

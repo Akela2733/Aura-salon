@@ -1,0 +1,6 @@
+{
+  "name": "CORRIDOR Salon",
+  "description": "An immersive luxury salon walkthrough in Colombo. Journey through the corridor of self-care stations, customize your appointment, consult with our AI hair stylist, and complete your booking and payment online.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
