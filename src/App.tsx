@@ -3,6 +3,8 @@ import { motion, AnimatePresence } from "motion/react";
 import {
   Menu,
   X,
+  Sun,
+  Moon,
   MapPin,
   Clock,
   Phone,
@@ -118,6 +120,7 @@ export default function App() {
   const [activeGalleryFilter, setActiveGalleryFilter] = useState<string>("all");
   const [station4Tab, setStation4Tab] = useState<"gallery" | "transformations" | "ai">("gallery");
   const [isMobile, setIsMobile] = useState(false);
+  const [theme, setTheme] = useState<"dark" | "light">("dark");
 
   // Custom Cursor Coordinate State
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
@@ -169,12 +172,23 @@ export default function App() {
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("resize", updateIsMobile);
     };
-
-    return () => {
-      clearInterval(timer);
-      window.removeEventListener("mousemove", handleMouseMove);
-    };
   }, []);
+
+  useEffect(() => {
+    const storedTheme = window.localStorage.getItem("aura-theme") as "dark" | "light" | null;
+    if (storedTheme) {
+      setTheme(storedTheme);
+    } else {
+      setTheme(window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    }
+  }, []);
+
+  useEffect(() => {
+    const root = document.documentElement;
+    root.classList.toggle("dark", theme === "dark");
+    root.classList.toggle("light", theme === "light");
+    window.localStorage.setItem("aura-theme", theme);
+  }, [theme]);
 
   // Update scrolled state
   useEffect(() => {
@@ -218,7 +232,7 @@ export default function App() {
   };
 
   return (
-    <div className="relative min-h-screen select-none overflow-hidden bg-black text-white antialiased">
+    <div className={`relative min-h-screen select-none overflow-hidden ${theme === "dark" ? "bg-black text-white" : "bg-neutral-100 text-slate-900"} antialiased`}>
       {/* Film grain and vignette shader overlays */}
       <div className="fixed inset-0 z-1 pointer-events-none bg-radial-gradient(ellipse at 50% 45%, rgba(250,248,245,0) 35%, rgba(180,136,67,0.12) 100%) mix-blend-multiply" />
       <div className="fixed inset-0 z-1 pointer-events-none opacity-[0.03] bg-[url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%22120%22><filter id=%22n%22><feTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22 numOctaves=%222%22 stitchTiles=%22stitch%22/></filter><rect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23n)%22/></svg>')]" />
@@ -281,7 +295,21 @@ export default function App() {
           AURA
         </button>
 
-        <div className="flex items-center gap-6 pointer-events-auto">
+        <div className="flex items-center gap-4 pointer-events-auto">
+          <button
+            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            className={`flex items-center justify-center gap-2 rounded-full border backdrop-blur-md px-4 py-2 text-[10px] font-mono uppercase tracking-widest transition-all ${
+              theme === "dark"
+                ? "border-white/15 bg-black/40 text-white/80 hover:border-amber-500/50 hover:text-amber-300"
+                : "border-slate-300/60 bg-white/80 text-slate-900/90 hover:border-amber-500/70 hover:text-slate-700"
+            }`}
+          >
+            {theme === "dark" ? <Sun className="h-3 w-3" /> : <Moon className="h-3 w-3" />}
+            <span>{theme === "dark" ? "LIGHT" : "DARK"}</span>
+          </button>
+
           <button
             onClick={() => setTargetProgress(1)}
             onMouseEnter={() => setIsHovered(true)}
@@ -414,10 +442,10 @@ export default function App() {
       </aside>
 
       {/* 6. Main Interactive Floating Contents */}
-      <main className="fixed inset-0 z-10 pointer-events-none mt-24 pt-24 mb-20 pb-20 flex items-center justify-center">
+      <main className="fixed inset-0 z-10 pointer-events-none mt-28 pt-28 mb-28 pb-28 flex items-center justify-center">
         {/* STATION 00 — ARRIVAL */}
         <section
-          className="absolute inset-0 flex items-center justify-center p-4 pt-24 md:p-8 md:pt-10 pointer-events-none"
+          className="absolute inset-0 flex items-center justify-center p-4 pt-28 md:p-8 md:pt-12 pointer-events-none"
           style={getPanelOffsetStyle(0)}
         >
           <div className="pointer-events-auto max-h-[90vh] overflow-y-auto hud-scroll w-full max-w-3xl text-center">

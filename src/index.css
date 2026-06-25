@@ -164,6 +164,90 @@
   scrollbar-color: rgba(180, 136, 67, 0.45) rgba(180, 136, 67, 0.03);
 }
 
+html.dark {
+  color-scheme: dark;
+  background: #050505;
+}
+
+html.light {
+  color-scheme: light;
+  background: #f8fafc;
+  color: #0f172a;
+}
+
+html.light .glass-card {
+  background: rgba(255, 255, 255, 0.92);
+  border-color: rgba(148, 163, 184, 0.22);
+  box-shadow: 0 30px 60px rgba(15, 23, 42, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+html.light .glass-input {
+  background: rgba(255, 255, 255, 0.92);
+  border-color: rgba(148, 163, 184, 0.35);
+  color: #0f172a;
+}
+
+html.light .glass-input::placeholder {
+  color: rgba(15, 23, 42, 0.35);
+}
+
+html.light .btn-ghost-gold {
+  background: rgba(249, 115, 22, 0.08);
+  border-color: rgba(245, 158, 11, 0.35);
+  color: #b45309;
+}
+
+html.light .btn-ghost-gold:hover {
+  background: rgba(249, 115, 22, 0.16);
+}
+
+html.light .gold-badge {
+  background: rgba(245, 158, 11, 0.12);
+  border-color: rgba(245, 158, 11, 0.35);
+  color: #b45309;
+}
+
+html.light .hud-scroll::-webkit-scrollbar-track {
+  background: rgba(203, 213, 225, 0.16);
+}
+html.light .hud-scroll::-webkit-scrollbar-thumb {
+  background-color: rgba(245, 158, 11, 0.45);
+}
+
+html.light .text-white,
+html.light .text-white\/90,
+html.light .text-white\/75,
+html.light .text-white\/70,
+html.light .text-white\/60,
+html.light .text-white\/50 {
+  color: #0f172a !important;
+}
+
+html.light .bg-black\/40,
+html.light .bg-black\/20,
+html.light .bg-black\/30,
+html.light .bg-black\/50,
+html.light .bg-black\/60,
+html.light .bg-black\/75 {
+  background-color: rgba(255, 255, 255, 0.92) !important;
+}
+
+html.light .border-white\/10,
+html.light .border-white\/15,
+html.light .border-white\/20,
+html.light .border-white\/30 {
+  border-color: rgba(148, 163, 184, 0.35) !important;
+}
+
+html.light .bg-white\/5,
+html.light .bg-white\/10 {
+  background-color: rgba(255, 255, 255, 0.92) !important;
+}
+
+html.light .bg-neutral-900 {
+  background-color: #e2e8f0 !important;
+}
+
 /* Premium printing styles for reservation ticket receipts */
 @media print {
   body {
