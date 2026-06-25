@@ -421,7 +421,7 @@ export default function App() {
       <main className="fixed inset-0 z-10 pointer-events-none flex items-center justify-center">
         {/* STATION 00 — ARRIVAL */}
         <section
-          className="absolute inset-0 flex items-center justify-center p-4 md:p-8 pointer-events-none"
+          className="absolute inset-0 flex items-center justify-center p-4 pt-20 md:p-8 md:pt-8 pointer-events-none"
           style={getPanelOffsetStyle(0)}
         >
           <div className="pointer-events-auto max-h-[90vh] overflow-y-auto hud-scroll w-full max-w-3xl text-center">
@@ -568,7 +568,7 @@ export default function App() {
         </section>
 
         <section
-          className="absolute inset-0 flex items-center justify-center p-4 md:p-6 pointer-events-none"
+          className="absolute inset-0 flex items-center justify-center p-4 pt-20 md:p-6 md:pt-6 pointer-events-none"
           style={getPanelOffsetStyle(1)}
         >
           <div className="pointer-events-auto max-h-[90vh] overflow-y-auto hud-scroll w-full max-w-3xl text-left">
@@ -662,7 +662,7 @@ export default function App() {
 
         {/* STATION 02 — BEAUTY EXPERTS */}
         <section
-          className="absolute inset-0 flex items-center justify-center p-4 md:p-6 pointer-events-none"
+          className="absolute inset-0 flex items-center justify-center p-4 pt-20 md:p-6 md:pt-6 pointer-events-none"
           style={getPanelOffsetStyle(2)}
         >
           <div className="pointer-events-auto max-h-[90vh] overflow-y-auto hud-scroll w-full max-w-4xl text-left">
@@ -781,7 +781,7 @@ export default function App() {
 
         {/* STATION 03 — COUTURE GALLERY & AI STYLIST */}
         <section
-          className="absolute inset-0 flex items-center justify-center p-4 md:p-6 pointer-events-none"
+          className="absolute inset-0 flex items-center justify-center p-4 pt-20 md:p-6 md:pt-6 pointer-events-none"
           style={getPanelOffsetStyle(3)}
         >
           <div className="pointer-events-auto max-h-[90vh] overflow-y-auto hud-scroll w-full max-w-5xl text-left">
@@ -890,11 +890,11 @@ export default function App() {
               {station4Tab === "transformations" && (
                 <div className="space-y-5">
                   {/* Gallery Category Filter */}
-                  <div className="flex justify-between items-center border-b border-white/10 pb-4">
+                  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center border-b border-white/10 pb-4 gap-3">
                     <span className="block font-mono text-xs uppercase tracking-[0.22em] text-amber-400 font-semibold" style={{textShadow:'0 1px 12px rgba(0,0,0,0.9)'}}>
                       Filter Transformation Portfolio
                     </span>
-                    <div className="flex gap-2">
+                    <div className="flex gap-2 flex-wrap">
                       {["hair", "makeup", "bridal", "nails"].map((cat) => (
                         <button
                           key={cat}
@@ -913,7 +913,7 @@ export default function App() {
                   </div>
 
                   {/* Before/After cards */}
-                  <div className="grid grid-cols-1 gap-4 max-h-[200px] overflow-y-auto pr-1">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-h-[200px] overflow-y-auto pr-1">
                     {[
                       {
                         cat: "hair",
@@ -951,7 +951,7 @@ export default function App() {
                             <span className="font-sans text-sm font-semibold text-white">{item.title}</span>
                             <span className="font-mono text-[10px] uppercase tracking-wider text-amber-400 font-semibold">By {item.stylist}</span>
                           </div>
-                          <div className="grid grid-cols-2 gap-4 mt-2">
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
                             <div className="p-3 rounded-xl bg-white/5 border border-white/10 text-xs space-y-1">
                               <span className="font-mono text-[9px] text-white/30 uppercase tracking-widest block font-bold">Before</span>
                               <p className="font-sans text-white/50 font-light leading-relaxed">{item.before}</p>
@@ -991,7 +991,7 @@ export default function App() {
 
         {/* STATION 04 — RESERVATIONS */}
         <section
-          className="absolute inset-0 flex items-center justify-center p-4 md:p-6 pointer-events-none"
+          className="absolute inset-0 flex items-center justify-center p-4 pt-20 md:p-6 md:pt-6 pointer-events-none"
           style={getPanelOffsetStyle(4)}
         >
           <div className="pointer-events-auto max-h-[90vh] overflow-y-auto hud-scroll w-full max-w-5xl text-left">
@@ -1038,7 +1038,7 @@ export default function App() {
 
         {/* STATION 05 — CLIENT TESTIMONIALS */}
         <section
-          className="absolute inset-0 flex items-center justify-center p-4 md:p-6 pointer-events-none"
+          className="absolute inset-0 flex items-center justify-center p-4 pt-20 md:p-6 md:pt-6 pointer-events-none"
           style={getPanelOffsetStyle(5)}
         >
           <div className="pointer-events-auto max-h-[90vh] overflow-y-auto hud-scroll w-full max-w-4xl text-left">
