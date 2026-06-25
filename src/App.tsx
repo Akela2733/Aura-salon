@@ -278,10 +278,11 @@ export default function App() {
           targetProgress={targetProgress}
           setTargetProgress={setTargetProgress}
           reduceMotion={reduceMotion}
+          theme={theme}
         />
       ) : (
         // WebGL Fallback gradient background
-        <div className="fixed inset-0 bg-gradient-to-b from-[#15110d] to-[#0e0b08] z-0" />
+        <div className={`fixed inset-0 z-0 bg-gradient-to-b ${theme === "dark" ? "from-[#15110d] to-[#0e0b08]" : "from-[#f7efe4] to-[#e5d8ca]"}`} />
       )}
 
       {/* 3. Global Static Header (Chrome) */}
@@ -635,7 +636,7 @@ export default function App() {
                 ))}
               </div>
 
-              <div className="space-y-3 max-h-[240px] overflow-y-auto pr-1 hud-scroll">
+              <div className="space-y-3 pr-1">
                 {SALON_SERVICES.filter((s) => s.category === serviceCategory).map((s) => {
                   const isSelected = selectedServices.includes(s.id);
                   return (
@@ -1104,20 +1105,24 @@ export default function App() {
               exit={{ scale: 0.95, y: 15 }}
               transition={{ type: "spring", damping: 30, stiffness: 300 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-2xl bg-[#120f0d] border border-white/10 rounded-2xl overflow-hidden shadow-2xl cursor-default"
+              className={`relative w-full max-w-2xl border border-white/10 rounded-2xl overflow-hidden shadow-2xl cursor-default ${theme === "dark" ? "bg-[#120f0d]" : "bg-[#f5ede5]"}`}
             >
               {/* Close Button */}
               <button
                 type="button"
                 onClick={() => setActiveLightboxImage(null)}
-                className="absolute top-4 right-4 z-10 p-2 rounded-full bg-black/50 border border-white/10 text-white/70 hover:text-amber-400 hover:border-amber-500/50 transition-all cursor-pointer shadow-md"
+                className={`absolute top-4 right-4 z-10 p-2 rounded-full border transition-all cursor-pointer shadow-md ${
+                  theme === "dark"
+                    ? "bg-black/50 border-white/10 text-white/70 hover:text-amber-400 hover:border-amber-500/50"
+                    : "bg-slate-100/80 border-slate-300 text-slate-800 hover:text-amber-600 hover:border-amber-300"
+                }`}
               >
                 <X className="h-4 w-4" />
               </button>
 
               <div className="flex flex-col md:flex-row h-full">
                 {/* Photo */}
-                <div className="w-full md:w-3/5 aspect-video md:aspect-auto md:h-[400px] relative bg-black/40">
+                <div className={`w-full md:w-3/5 aspect-video md:aspect-auto md:h-[400px] relative ${theme === "dark" ? "bg-black/40" : "bg-white/80"}`}>
                   <img
                     src={activeLightboxImage.img}
                     alt={activeLightboxImage.title}
@@ -1127,7 +1132,7 @@ export default function App() {
                 </div>
 
                 {/* Info Column */}
-                <div className="w-full md:w-2/5 p-6 flex flex-col justify-between bg-[#120f0d]">
+                <div className={`w-full md:w-2/5 p-6 flex flex-col justify-between ${theme === "dark" ? "bg-[#120f0d]" : "bg-[#faf5ef]"}`}>
                   <div>
                     <span className="font-mono text-[9px] tracking-widest text-amber-400 font-semibold uppercase block mb-1">
                       {activeLightboxImage.tag}

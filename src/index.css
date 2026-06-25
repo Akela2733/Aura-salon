@@ -175,6 +175,48 @@ html.light {
   color: #0f172a;
 }
 
+html.light body {
+  background: #f8fafc;
+  color: #0f172a;
+}
+
+html.light [class*="text-white"] {
+  color: #0f172a !important;
+}
+
+html.light [class^="text-white"],
+html.light [class*=" text-white"] {
+  color: #0f172a !important;
+}
+
+html.light [class*="text-white/"],
+html.light [class^="text-white/"] {
+  color: #0f172a !important;
+}
+
+html.light [class*="bg-black"] {
+  background-color: rgba(255, 255, 255, 0.92) !important;
+}
+
+html.light [class*="bg-neutral-900"] {
+  background-color: #e2e8f0 !important;
+}
+
+html.light [class*="bg-white/5"],
+html.light [class*="bg-white/10"],
+html.light [class*="bg-white/20"] {
+  background-color: rgba(255, 255, 255, 0.92) !important;
+}
+
+html.light [class*="border-white"] {
+  border-color: rgba(148, 163, 184, 0.35) !important;
+}
+
+html.light [class*="border-black"],
+html.light [class*="border-neutral-900"] {
+  border-color: rgba(148, 163, 184, 0.35) !important;
+}
+
 html.light .glass-card {
   background: rgba(255, 255, 255, 0.92);
   border-color: rgba(148, 163, 184, 0.22);

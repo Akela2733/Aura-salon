@@ -7,6 +7,7 @@ interface ThreeCorridorProps {
   targetProgress: number;
   setTargetProgress: (p: number) => void;
   reduceMotion: boolean;
+  theme: "dark" | "light";
 }
 
 export default function ThreeCorridor({
@@ -15,6 +16,7 @@ export default function ThreeCorridor({
   targetProgress,
   setTargetProgress,
   reduceMotion,
+  theme,
 }: ThreeCorridorProps) {
   const mountRef = useRef<HTMLCanvasElement>(null);
   const stateRef = useRef({
@@ -52,16 +54,18 @@ export default function ThreeCorridor({
 
     // Create Scene
     const scene = new THREE.Scene();
-    const OBSIDIAN_DARK = 0x0d0b09;
-    scene.background = new THREE.Color(OBSIDIAN_DARK);
-    scene.fog = new THREE.FogExp2(OBSIDIAN_DARK, 0.035);
+    const isDark = theme === "dark";
+    const BACKGROUND_COLOR = isDark ? 0x0d0b09 : 0xf4efe5;
+    const FOG_COLOR = isDark ? 0x0d0b09 : 0xf5eee7;
+    scene.background = new THREE.Color(BACKGROUND_COLOR);
+    scene.fog = new THREE.FogExp2(FOG_COLOR, isDark ? 0.035 : 0.012);
 
     // Create Camera
     const camera = new THREE.PerspectiveCamera(52, width / height, 0.1, 220);
 
     // Add Lights
-    scene.add(new THREE.HemisphereLight(0xffffff, 0xe8dfd5, 0.85));
-    const dirLight = new THREE.DirectionalLight(0xf7e2be, 0.7);
+    scene.add(new THREE.HemisphereLight(0xffffff, isDark ? 0xe8dfd5 : 0xd8c8b5, 0.85));
+    const dirLight = new THREE.DirectionalLight(isDark ? 0xf7e2be : 0xfff2dc, 0.8);
     dirLight.position.set(5, 12, 6);
     scene.add(dirLight);
 
@@ -86,11 +90,11 @@ export default function ThreeCorridor({
       c.width = size;
       c.height = size;
       const ctx = c.getContext("2d")!;
-      ctx.fillStyle = "#0d0b09";
+      ctx.fillStyle = isDark ? "#0d0b09" : "#f7efe4";
       ctx.fillRect(0, 0, size, size);
       
       // Fine gold tile borders
-      ctx.strokeStyle = "rgba(217,119,6,0.3)";
+      ctx.strokeStyle = isDark ? "rgba(217,119,6,0.3)" : "rgba(217,119,6,0.22)";
       ctx.lineWidth = 2;
       for (let i = 0; i <= 4; i++) {
         ctx.beginPath();
@@ -104,7 +108,7 @@ export default function ThreeCorridor({
       ctx.stroke();
 
       // Subtle travertine marble veins
-      ctx.strokeStyle = "rgba(195,155,95,0.06)";
+      ctx.strokeStyle = isDark ? "rgba(195,155,95,0.06)" : "rgba(149,129,103,0.08)";
       for (let j = 0; j <= 8; j++) {
         ctx.beginPath();
         ctx.moveTo((j * size) / 8, 0);
@@ -142,8 +146,9 @@ export default function ThreeCorridor({
     const floorTex = makeFloorTexture();
     const floorMat = new THREE.MeshStandardMaterial({
       map: floorTex,
-      metalness: 0.15,
-      roughness: 0.25,
+      color: new THREE.Color(isDark ? 0x0d0b09 : 0xf5ebdf),
+      metalness: isDark ? 0.15 : 0.05,
+      roughness: isDark ? 0.25 : 0.45,
     });
     const floor = new THREE.Mesh(new THREE.PlaneGeometry(9, CORRIDOR_LEN + 30), floorMat);
     floor.rotation.x = -Math.PI / 2;
@@ -151,7 +156,7 @@ export default function ThreeCorridor({
     scene.add(floor);
 
     const wallMat = new THREE.MeshStandardMaterial({
-      color: 0x141210, // luxury dark warm plaster
+      color: isDark ? 0x141210 : 0xe8ddd4,
       roughness: 0.9,
       metalness: 0.02,
     });
@@ -164,7 +169,7 @@ export default function ThreeCorridor({
 
     const ceil = new THREE.Mesh(
       new THREE.PlaneGeometry(9, CORRIDOR_LEN + 30),
-      new THREE.MeshStandardMaterial({ color: 0x0c0a08, roughness: 0.95 })
+      new THREE.MeshStandardMaterial({ color: isDark ? 0x0c0a08 : 0xf3ede4, roughness: 0.95 })
     );
     ceil.rotation.x = Math.PI / 2;
     ceil.position.set(0, 6.3, (Z_START + Z_END) / 2);
@@ -656,7 +661,7 @@ export default function ThreeCorridor({
       floorTex.dispose();
       renderer.dispose();
     };
-  }, [onProgressChange, setTargetProgress, reduceMotion]);
+  }, [onProgressChange, setTargetProgress, reduceMotion, theme]);
 
   return (
     <canvas
