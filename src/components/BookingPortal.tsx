@@ -272,7 +272,7 @@ export default function BookingPortal({
             <span className="font-mono text-sm font-bold text-neutral-800">{completedBooking.id}</span>
           </div>
 
-          <div className="grid grid-cols-2 gap-5">
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
             <div>
               <span className="block font-mono text-xs text-neutral-400 uppercase font-semibold">Guest</span>
               <span className="font-sans text-sm text-neutral-700">{completedBooking.clientName}</span>
@@ -283,7 +283,7 @@ export default function BookingPortal({
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-5">
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
             <div className="flex items-center gap-2">
               <Calendar className="h-4 w-4 text-amber-600" />
               <div>
@@ -373,11 +373,11 @@ export default function BookingPortal({
           <span className="font-mono text-xs text-neutral-400">COR-{completedBooking.id}-COLOMBO</span>
         </div>
 
-        <div className="mt-8 flex flex-col sm:flex-row gap-4 print:hidden">
+        <div className="mt-8 flex flex-col gap-4 sm:flex-row print:hidden">
           <button
             onClick={handlePrint}
             type="button"
-            className="flex-1 flex items-center justify-center gap-2.5 rounded-lg border border-white/10 bg-black/40 py-3 text-xs font-mono uppercase tracking-wider text-white hover:border-amber-500/50 hover:text-amber-300 transition-all cursor-pointer"
+            className="w-full flex items-center justify-center gap-2.5 rounded-lg border border-white/10 bg-black/40 py-3 text-xs font-mono uppercase tracking-wider text-white hover:border-amber-500/50 hover:text-amber-300 transition-all cursor-pointer"
           >
             <Printer className="h-4 w-4" /> Print Ticket
           </button>
@@ -589,7 +589,7 @@ export default function BookingPortal({
           <label className="mb-3 block font-mono text-xs uppercase tracking-wider text-amber-400 font-bold">
             Payment Alignment
           </label>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <button
               type="button"
               onClick={() => setPaymentMethod("offline")}
@@ -662,7 +662,7 @@ export default function BookingPortal({
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <div>
                 <label className="block font-mono text-[10px] text-amber-400 font-bold uppercase mb-1">Expiration Date</label>
                 <input

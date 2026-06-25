@@ -118,6 +118,7 @@ export default function App() {
   const [activeLightboxImage, setActiveLightboxImage] = useState<any | null>(null);
   const [activeGalleryFilter, setActiveGalleryFilter] = useState<string>("all");
   const [station4Tab, setStation4Tab] = useState<"gallery" | "transformations" | "ai">("gallery");
+  const [isMobile, setIsMobile] = useState(false);
 
   // Custom Cursor Coordinate State
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
@@ -159,6 +160,16 @@ export default function App() {
         return prev + Math.floor(4 + Math.random() * 8);
       });
     }, 60);
+
+    const updateIsMobile = () => setIsMobile(window.innerWidth < 768);
+    updateIsMobile();
+    window.addEventListener("resize", updateIsMobile);
+
+    return () => {
+      clearInterval(timer);
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("resize", updateIsMobile);
+    };
 
     return () => {
       clearInterval(timer);
@@ -370,7 +381,7 @@ export default function App() {
       </AnimatePresence>
 
       {/* 5. Progress Tracker Sidebar (Vertical Rail) */}
-      <aside className="fixed right-6 md:right-8 top-1/2 -translate-y-1/2 z-25 flex items-center gap-4 pointer-events-auto">
+      <aside className="hidden md:flex fixed right-6 md:right-8 top-1/2 -translate-y-1/2 z-25 flex-col items-center gap-4 pointer-events-auto">
         <div className="relative w-[2px] h-[200px] bg-white/15 rounded-full overflow-hidden">
           <div
             className="absolute top-0 left-0 w-full bg-gradient-to-b from-amber-400 to-amber-600 rounded-full transition-all duration-100"
@@ -667,16 +678,18 @@ export default function App() {
 
             {/* Elegant Horizontal Scrolling Beauty Experts Carousel */}
             <div className="mt-8">
-              <div className="flex justify-between items-center mb-5">
+              <div className="flex flex-col sm:flex-row sm:justify-between items-start gap-3 mb-5">
                 <span className="block font-mono text-xs uppercase tracking-[0.22em] text-amber-400 font-semibold" style={{textShadow:'0 1px 12px rgba(0,0,0,0.9)'}}>
-                  Our Master Artisans (Select Stylist)
+                  Our Master Artisans
                 </span>
-                <span className="font-mono text-xs uppercase tracking-wider gold-badge px-3.5 py-1.5 rounded-full animate-pulse">
-                  ← Swipe →
-                </span>
+                {!isMobile && (
+                  <span className="font-mono text-xs uppercase tracking-wider gold-badge px-3.5 py-1.5 rounded-full animate-pulse">
+                    ← Swipe →
+                  </span>
+                )}
               </div>
               
-              <div className="flex gap-5 overflow-x-auto pb-4 pt-1 snap-x snap-mandatory">
+              <div className={`${isMobile ? "grid grid-cols-1 gap-5" : "flex gap-5 overflow-x-auto pb-4 pt-1 snap-x snap-mandatory"}`}>
                 {[
                   {
                     name: "Anura Senanayake",
@@ -717,7 +730,7 @@ export default function App() {
                       key={st.name}
                       type="button"
                       onClick={() => setSelectedStylist(isSelected ? null : st.name)}
-                      className={`w-[300px] sm:w-[340px] shrink-0 snap-center text-left p-6 rounded-2xl border transition-all duration-300 flex flex-col justify-between gap-5 cursor-pointer ${
+                      className={`w-full ${isMobile ? "" : "w-[300px] sm:w-[340px] shrink-0 snap-center"} text-left p-6 rounded-2xl border transition-all duration-300 flex flex-col justify-between gap-5 cursor-pointer ${
                         isSelected
                           ? "border-amber-500/50 bg-amber-500/10"
                           : "border-white/10 bg-black/40 backdrop-blur-md hover:border-amber-500/30"
@@ -1119,7 +1132,7 @@ export default function App() {
       </AnimatePresence>
 
       {/* 7. Scroll cue helper */}
-      {!hasScrolled && (
+      {!hasScrolled && !isMobile && (
         <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 pointer-events-none opacity-80 animate-pulse">
           <span className="font-sans text-sm uppercase tracking-widest font-light text-white/60" style={{textShadow:'0 1px 12px rgba(0,0,0,0.9)'}}>
             Scroll or drag to walk the walkway

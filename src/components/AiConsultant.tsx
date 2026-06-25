@@ -92,9 +92,8 @@ export default function AiConsultant({ clientName, onProfileGenerated, savedProf
           <label className="mb-2 block font-mono text-xs uppercase tracking-wider text-amber-400 font-semibold">
             1. Select Hair Texture Category
           </label>
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             {HAIR_TYPES.map((t) => (
-              <button
                 key={t}
                 onClick={() => setHairType(t)}
                 className={`rounded-xl border p-3.5 text-left text-xs font-sans transition-all duration-300 cursor-pointer ${
@@ -114,8 +113,7 @@ export default function AiConsultant({ clientName, onProfileGenerated, savedProf
           <label className="mb-2 block font-mono text-xs uppercase tracking-wider text-amber-400 font-semibold">
             2. Identify Tropical Environment Concerns
           </label>
-          <div className="grid grid-cols-2 gap-3">
-            {HAIR_CONCERNS_LIST.map((concern) => {
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
               const active = selectedConcerns.includes(concern);
               return (
                 <button
