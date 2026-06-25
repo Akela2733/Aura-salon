@@ -262,7 +262,11 @@ export default function ThreeCorridor({
 
       const deskBody = new THREE.Mesh(
         new THREE.BoxGeometry(3.0, 1.0, 0.9),
-        new THREE.MeshStandardMaterial({ color: 0x161310, metalness: 0.2, roughness: 0.15 })
+        new THREE.MeshStandardMaterial({
+          color: isDark ? 0x161310 : 0xc8c0b8,
+          metalness: isDark ? 0.2 : 0.05,
+          roughness: isDark ? 0.15 : 0.35,
+        })
       );
       deskBody.position.set(-2.6, 0.5, z);
       scene.add(deskBody);
@@ -275,7 +279,11 @@ export default function ThreeCorridor({
       const z = STATION_Z[1];
       const pedestal = new THREE.Mesh(
         new THREE.CylinderGeometry(0.32, 0.4, 0.95, 16),
-        new THREE.MeshStandardMaterial({ color: 0x161310, metalness: 0.2, roughness: 0.15 })
+        new THREE.MeshStandardMaterial({
+          color: isDark ? 0x161310 : 0xd0c6be,
+          metalness: isDark ? 0.2 : 0.05,
+          roughness: isDark ? 0.15 : 0.35,
+        })
       );
       pedestal.position.set(0, 0.48, z);
       scene.add(pedestal);
@@ -372,14 +380,20 @@ export default function ThreeCorridor({
       const z = STATION_Z[2];
       const seat = new THREE.Mesh(
         new THREE.BoxGeometry(0.9, 0.14, 0.9),
-        new THREE.MeshStandardMaterial({ color: 0x1a1612, roughness: 0.6 })
+        new THREE.MeshStandardMaterial({
+          color: isDark ? 0x1a1612 : 0xd1cbc4,
+          roughness: isDark ? 0.6 : 0.35,
+        })
       );
       seat.position.set(0, 0.85, z);
       scene.add(seat);
 
       const back = new THREE.Mesh(
         new THREE.BoxGeometry(0.9, 1.0, 0.12),
-        new THREE.MeshStandardMaterial({ color: 0x1a1612, roughness: 0.6 })
+        new THREE.MeshStandardMaterial({
+          color: isDark ? 0x1a1612 : 0xd1cbc4,
+          roughness: isDark ? 0.6 : 0.35,
+        })
       );
       back.position.set(0, 1.45, z - 0.4);
       scene.add(back);
@@ -399,7 +413,13 @@ export default function ThreeCorridor({
 
       const mirror = new THREE.Mesh(
         new THREE.PlaneGeometry(2.2, 3.0),
-        new THREE.MeshStandardMaterial({ color: 0xcdbfa5, metalness: 0.95, roughness: 0.06 })
+        new THREE.MeshStandardMaterial({
+          color: isDark ? 0xcdbfa5 : 0xf5efe4,
+          metalness: 0.95,
+          roughness: 0.06,
+          emissive: isDark ? 0x000000 : 0xefe2d2,
+          emissiveIntensity: isDark ? 0 : 0.12,
+        })
       );
       mirror.position.set(0, 1.7, z - 2.19);
       scene.add(mirror);
@@ -407,11 +427,11 @@ export default function ThreeCorridor({
       const border = new THREE.Mesh(
         new THREE.PlaneGeometry(2.34, 3.14),
         new THREE.MeshStandardMaterial({
-          color: BRASS,
+          color: isDark ? BRASS : 0xf1d6a5,
           metalness: 0.8,
           roughness: 0.32,
-          emissive: 0x1a1006,
-          emissiveIntensity: 0.3,
+          emissive: isDark ? 0x1a1006 : 0xf5dfc1,
+          emissiveIntensity: isDark ? 0.3 : 0.15,
         })
       );
       border.position.set(0, 1.7, z - 2.21);
@@ -439,7 +459,13 @@ export default function ThreeCorridor({
 
       const mirror = new THREE.Mesh(
         new THREE.PlaneGeometry(4.0, 3.1),
-        new THREE.MeshStandardMaterial({ color: 0xcdbfa5, metalness: 0.95, roughness: 0.06 })
+        new THREE.MeshStandardMaterial({
+          color: isDark ? 0xcdbfa5 : 0xf4ede2,
+          metalness: 0.95,
+          roughness: 0.06,
+          emissive: isDark ? 0x000000 : 0xefdfd1,
+          emissiveIntensity: isDark ? 0 : 0.12,
+        })
       );
       mirror.position.set(0, 2.0, z - 1.2);
       scene.add(mirror);
