@@ -469,7 +469,7 @@ export default function BookingPortal({
         </div>
 
         {/* Date / Time */}
-        <div className="grid grid-cols-2 gap-5">
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
           <div>
             <label className="mb-2 block font-mono text-xs uppercase tracking-wider text-amber-400 font-bold">
               Reservation Date

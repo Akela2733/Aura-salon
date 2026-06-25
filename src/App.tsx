@@ -325,7 +325,7 @@ export default function App() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "tween", duration: 0.4, ease: [0.22, 0.61, 0.36, 1] }}
-              className="fixed top-0 right-0 bottom-0 z-40 w-[340px] border-l border-amber-500/15 bg-black/75 backdrop-blur-2xl p-8 pt-24 shadow-2xl text-left flex flex-col justify-between text-white"
+              className="fixed top-0 right-0 bottom-0 z-40 w-full max-w-[340px] border-l border-amber-500/15 bg-black/75 backdrop-blur-2xl p-6 pt-24 shadow-2xl text-left flex flex-col justify-between text-white"
             >
               <div>
                 <span className="block font-display text-[11px] font-light uppercase tracking-[0.3em] text-amber-400 mb-6">

@@ -87,7 +87,7 @@ export default function ClientTestimonials() {
 
       <div className="mt-5 grid grid-cols-1 gap-6 md:grid-cols-5">
         {/* Left Column: Form (2/5 size) */}
-        <div className="md:col-span-2 md:border-r border-white/10 pr-0 md:pr-6 space-y-4 text-left">
+        <div className="md:col-span-2 border-white/10 pr-0 md:pr-6 space-y-4 text-left">
           <div className="flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-amber-400 font-bold">
             <PenTool className="h-4 w-4" /> Share Your Experience
           </div>
