@@ -293,7 +293,7 @@ export default function App() {
       )}
 
       {/* 3. Global Static Header (Chrome) */}
-      <header className="fixed top-0 left-0 right-0 z-30 flex items-center justify-between p-6 md:px-8 pointer-events-none">
+      <header className="fixed top-0 left-0 right-0 z-20 flex items-center justify-between p-6 md:px-8 pointer-events-none">
         <button
           onClick={() => setTargetProgress(0)}
           onMouseEnter={() => setIsHovered(true)}
@@ -449,8 +449,8 @@ export default function App() {
         </ul>
       </aside>
 
-      {/* 6. Main Interactive Floating Contents */}
-      <main className="fixed inset-0 z-10 pointer-events-none mt-20 pt-20 mb-20 pb-20 flex items-start justify-center md:mt-28 md:pt-28 md:mb-28 md:pb-28">
+      {/* 6. Main Interactive Floating Contents */
+      <main className="fixed inset-0 z-10 pointer-events-none mt-10 pt-10 mb-20 pb-20 flex items-start justify-center md:mt-28 md:pt-28 md:mb-28 md:pb-28">
         {/* STATION 00 — ARRIVAL */}
         <section
           className="absolute inset-0 flex items-start sm:items-center justify-center p-4 pt-20 md:p-8 md:pt-12 pointer-events-none"
