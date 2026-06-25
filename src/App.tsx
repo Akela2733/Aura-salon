@@ -24,7 +24,6 @@ import {
   Maximize2
 } from "lucide-react";
 import ThreeCorridor from "./components/ThreeCorridor";
-import AudioPlayer from "./components/AudioPlayer";
 import AiConsultant from "./components/AiConsultant";
 import BookingPortal, { SALON_SERVICES, SALON_PRODUCTS } from "./components/BookingPortal";
 import ClientTestimonials from "./components/ClientTestimonials";
@@ -283,9 +282,6 @@ export default function App() {
         </button>
 
         <div className="flex items-center gap-6 pointer-events-auto">
-          {/* Quick Audio Synthesizer Toggle */}
-          <AudioPlayer />
-
           <button
             onClick={() => setTargetProgress(1)}
             onMouseEnter={() => setIsHovered(true)}
