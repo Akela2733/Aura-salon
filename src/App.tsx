@@ -449,7 +449,7 @@ export default function App() {
         </ul>
       </aside>
 
-      {/* 6. Main Interactive Floating Contents */
+      {/* 6. Main Interactive Floating Contents */}
       <main className="fixed inset-0 z-10 pointer-events-none mt-10 pt-10 mb-20 pb-20 flex items-start justify-center md:mt-28 md:pt-28 md:mb-28 md:pb-28">
         {/* STATION 00 — ARRIVAL */}
         <section
