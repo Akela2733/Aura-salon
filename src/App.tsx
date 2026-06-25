@@ -190,6 +190,13 @@ export default function App() {
     window.localStorage.setItem("aura-theme", theme);
   }, [theme]);
 
+  useEffect(() => {
+    if (targetProgress === null) return;
+    document.querySelectorAll<HTMLDivElement>(".hud-scroll").forEach((el) => {
+      if (el.scrollTop !== 0) el.scrollTop = 0;
+    });
+  }, [targetProgress]);
+
   // Update scrolled state
   useEffect(() => {
     if (progress > 0.015) {
