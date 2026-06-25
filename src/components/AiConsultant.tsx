@@ -94,6 +94,7 @@ export default function AiConsultant({ clientName, onProfileGenerated, savedProf
           </label>
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             {HAIR_TYPES.map((t) => (
+              <button
                 key={t}
                 onClick={() => setHairType(t)}
                 className={`rounded-xl border p-3.5 text-left text-xs font-sans transition-all duration-300 cursor-pointer ${
