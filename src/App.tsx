@@ -450,10 +450,10 @@ export default function App() {
       </aside>
 
       {/* 6. Main Interactive Floating Contents */}
-      <main className="fixed inset-0 z-10 pointer-events-none mt-28 pt-28 mb-28 pb-28 flex items-center justify-center">
+      <main className="fixed inset-0 z-10 pointer-events-none mt-20 pt-20 mb-20 pb-20 flex items-start justify-center md:mt-28 md:pt-28 md:mb-28 md:pb-28">
         {/* STATION 00 — ARRIVAL */}
         <section
-          className="absolute inset-0 flex items-center justify-center p-4 pt-28 md:p-8 md:pt-12 pointer-events-none"
+          className="absolute inset-0 flex items-start sm:items-center justify-center p-4 pt-20 md:p-8 md:pt-12 pointer-events-none"
           style={getPanelOffsetStyle(0)}
         >
           <div className="pointer-events-auto max-h-[90vh] overflow-y-auto hud-scroll w-full max-w-3xl text-center">
@@ -600,7 +600,7 @@ export default function App() {
         </section>
 
         <section
-          className="absolute inset-0 flex items-center justify-center p-4 pt-20 md:p-6 md:pt-6 pointer-events-none"
+          className="absolute inset-0 flex items-start sm:items-center justify-center p-4 pt-20 md:p-6 md:pt-6 pointer-events-none"
           style={getPanelOffsetStyle(1)}
         >
           <div className="pointer-events-auto max-h-[90vh] overflow-y-auto hud-scroll w-full max-w-3xl text-left">
@@ -694,7 +694,7 @@ export default function App() {
 
         {/* STATION 02 — BEAUTY EXPERTS */}
         <section
-          className="absolute inset-0 flex items-center justify-center p-4 pt-20 md:p-6 md:pt-6 pointer-events-none"
+          className="absolute inset-0 flex items-start sm:items-center justify-center p-4 pt-20 md:p-6 md:pt-6 pointer-events-none"
           style={getPanelOffsetStyle(2)}
         >
           <div className="pointer-events-auto max-h-[90vh] overflow-y-auto hud-scroll w-full max-w-4xl text-left">
@@ -813,7 +813,7 @@ export default function App() {
 
         {/* STATION 03 — COUTURE GALLERY & AI STYLIST */}
         <section
-          className="absolute inset-0 flex items-center justify-center p-4 pt-20 md:p-6 md:pt-6 pointer-events-none"
+          className="absolute inset-0 flex items-start sm:items-center justify-center p-4 pt-20 md:p-6 md:pt-6 pointer-events-none"
           style={getPanelOffsetStyle(3)}
         >
           <div className="pointer-events-auto max-h-[90vh] overflow-y-auto hud-scroll w-full max-w-5xl text-left">
@@ -878,7 +878,7 @@ export default function App() {
                   </div>
 
                   {/* Gallery Image Grid */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 max-h-[320px] overflow-y-auto pr-1">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:max-h-[320px] sm:overflow-y-auto pr-1">
                     {REAL_WORK_GALLERY.filter(item => activeGalleryFilter === "all" || item.category === activeGalleryFilter).map((item) => (
                       <div
                         key={item.id}
@@ -945,7 +945,7 @@ export default function App() {
                   </div>
 
                   {/* Before/After cards */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-h-[200px] overflow-y-auto pr-1">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:max-h-[200px] sm:overflow-y-auto pr-1">
                     {[
                       {
                         cat: "hair",
@@ -1023,7 +1023,7 @@ export default function App() {
 
         {/* STATION 04 — RESERVATIONS */}
         <section
-          className="absolute inset-0 flex items-center justify-center p-4 pt-20 md:p-6 md:pt-6 pointer-events-none"
+          className="absolute inset-0 flex items-start sm:items-center justify-center p-4 pt-20 md:p-6 md:pt-6 pointer-events-none"
           style={getPanelOffsetStyle(4)}
         >
           <div className="pointer-events-auto max-h-[90vh] overflow-y-auto hud-scroll w-full max-w-5xl text-left">
@@ -1070,7 +1070,7 @@ export default function App() {
 
         {/* STATION 05 — CLIENT TESTIMONIALS */}
         <section
-          className="absolute inset-0 flex items-center justify-center p-4 pt-20 md:p-6 md:pt-6 pointer-events-none"
+          className="absolute inset-0 flex items-start sm:items-center justify-center p-4 pt-20 md:p-6 md:pt-6 pointer-events-none"
           style={getPanelOffsetStyle(5)}
         >
           <div className="pointer-events-auto max-h-[90vh] overflow-y-auto hud-scroll w-full max-w-4xl text-left">

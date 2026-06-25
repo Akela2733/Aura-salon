@@ -115,6 +115,16 @@ export default function BookingPortal({
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [completedBooking, setCompletedBooking] = useState<Appointment | null>(null);
+  const [serviceCategory, setServiceCategory] = useState<string>("hair");
+
+  const SERVICE_CATEGORIES = [
+    { id: "hair", label: "Hair" },
+    { id: "makeup", label: "Makeup" },
+    { id: "nail", label: "Nails" },
+    { id: "skin", label: "Skin" },
+    { id: "spa", label: "Spa" },
+    { id: "package", label: "Packages" }
+  ];
 
   // Auto-populate services or notes if they passed by some stations
   useEffect(() => {
@@ -509,8 +519,22 @@ export default function BookingPortal({
           <label className="mb-3 block font-mono text-xs uppercase tracking-wider text-amber-400 font-bold">
             Select Corridor Stations / Services
           </label>
-          <div className="space-y-3 max-h-[300px] overflow-y-auto pr-1.5 hud-scroll">
-            {SALON_SERVICES.map((serv) => {
+          <div className="flex flex-wrap gap-2 border-b border-white/10 pb-4 mb-5">
+            {SERVICE_CATEGORIES.map((cat) => (
+              <button
+                key={cat.id}
+                type="button"
+                onClick={() => setServiceCategory(cat.id)}
+                className={`font-mono text-xs uppercase tracking-wider px-4 py-2 rounded-full transition-all cursor-pointer ${
+                  serviceCategory === cat.id ? "btn-gold" : "btn-ghost-gold"
+                }`}
+              >
+                {cat.label}
+              </button>
+            ))}
+          </div>
+          <div className="space-y-3">
+            {SALON_SERVICES.filter((serv) => serv.category === serviceCategory).map((serv) => {
               const active = selectedServices.includes(serv.id);
               return (
                 <button
