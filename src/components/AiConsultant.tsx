@@ -115,6 +115,7 @@ export default function AiConsultant({ clientName, onProfileGenerated, savedProf
             2. Identify Tropical Environment Concerns
           </label>
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+            {HAIR_CONCERNS_LIST.map((concern) => {
               const active = selectedConcerns.includes(concern);
               return (
                 <button
