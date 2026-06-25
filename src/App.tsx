@@ -414,10 +414,10 @@ export default function App() {
       </aside>
 
       {/* 6. Main Interactive Floating Contents */}
-      <main className="fixed inset-0 z-10 pointer-events-none mt-20 pt-20 mb-20 pb-20 flex items-center justify-center">
+      <main className="fixed inset-0 z-10 pointer-events-none mt-24 pt-24 mb-20 pb-20 flex items-center justify-center">
         {/* STATION 00 — ARRIVAL */}
         <section
-          className="absolute inset-0 flex items-center justify-center p-4 pt-20 md:p-8 md:pt-8 pointer-events-none"
+          className="absolute inset-0 flex items-center justify-center p-4 pt-24 md:p-8 md:pt-10 pointer-events-none"
           style={getPanelOffsetStyle(0)}
         >
           <div className="pointer-events-auto max-h-[90vh] overflow-y-auto hud-scroll w-full max-w-3xl text-center">
